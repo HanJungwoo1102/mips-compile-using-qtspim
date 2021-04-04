@@ -11,7 +11,7 @@
 ##################################################
 .data
   buffer:	  .space 80
-  input:	  .asciiz "pa1-1.input"
+  input:	  .asciiz "/Users/hanjungwoo/projects/hanjungwoo/mips-compile-using-qtspim/pa1-1/pa1-1.input"
   output1:	.asciiz "GCD between "
   output2:	.asciiz "LCM between "
   output3:  .asciiz " and "

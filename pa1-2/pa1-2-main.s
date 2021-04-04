@@ -16,7 +16,7 @@
   C:        .space 400
   DIM:      .space 4
   N:        .space 4
-  input:	  .asciiz "pa1-2.input"
+  input:	  .asciiz "/Users/hanjungwoo/projects/hanjungwoo/mips-compile-using-qtspim/pa1-2/pa1-2.input"
   ENTER:	  .asciiz "\n"
   SPACE:	  .asciiz "\t"
 
