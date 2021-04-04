@@ -62,10 +62,10 @@ add $s0, $s1, $zero                       # i = j
 PA1_1_LCM_FOR:
 div $s0, $a0                              
 mfhi $t0                                  # $t0 = i % n
-bne $t0, $zero PA1_1_GCD_IF_EXIT_2                           
+bne $t0, $zero PA1_1_LCM_IF_EXIT_2                           
 div $s0, $a1
 mfhi $t0                                  # $t0 = i % m
-bne $t0, $zero PA1_1_GCD_IF_EXIT_2    
+bne $t0, $zero PA1_1_LCM_IF_EXIT_2    
 add $v0, $s0, $zero                       # ret = i
 j PA1_1_LCM_FOR_EXIT                      # break
 
