@@ -13,6 +13,7 @@ product:
   la $t2, C
   la $t3, DIM
   lw $t3, 0($t3)
+  addi $t7, $zero, 10                           # MAX = 10
 
   addi $t4, $zero, 1
   beq $a0, $t4, PRODUCT_END 
@@ -32,28 +33,28 @@ PRODUCT_FOR_3:
   slt $t4, $s2, $t3
   beq $t4, $zero, PRODUCT_FOR_3_END
 
-  mult $s0, $t3
+  mult $s0, $t7
   mflo $t4
   add $t4, $t4, $s2                             
   sll $t4, $t4, 2
-  add $t4, $t4, $t0                             # t4 = A + (DIM * i + k) * 4
+  add $t4, $t4, $t0                             # t4 = A + (MAX * i + k) * 4
   lw $t4, 0($t4)       
 
-  mult $s2, $t3
+  mult $s2, $t7
   mflo $t5
   add $t5, $t5, $s1                             
   sll $t5, $t5, 2
-  add $t5, $t5, $t1                             # t5 = B + (DIM * k + j) * 4
+  add $t5, $t5, $t1                             # t5 = B + (MAX * k + j) * 4
   lw $t5, 0($t5)    
 
   mult $t4, $t5                                 # t4 = t4 * t5
   mflo $t4
 
-  mult $s0, $t3
+  mult $s0, $t7
   mflo $t6
   add $t6, $t6, $s1                             
   sll $t6, $t6, 2
-  add $t6, $t6, $t2                             # t6 = C + (DIM * i + j) * 4
+  add $t6, $t6, $t2                             # t6 = C + (MAX * i + j) * 4
   lw $t5, 0($t6)                                # t5 = C[t6]
 
   add $t4, $t4, $t5                             # t4 = t4 + t5
@@ -82,17 +83,17 @@ PRODUCT_FOR_5:
   slt $t4, $s1, $t3
   beq $t4, $zero, PRODUCT_FOR_5_END
 
-  mult $s0, $t3
+  mult $s0, $t7
   mflo $t4
   add $t4, $t4, $s1                             
   sll $t4, $t4, 2
-  add $t4, $t4, $t1                             # t4 = B + (DIM * i + j) * 4
+  add $t4, $t4, $t1                             # t4 = B + (MAX * i + j) * 4
 
-  mult $s0, $t3
+  mult $s0, $t7
   mflo $t0
   add $t0, $t0, $s1                             
   sll $t0, $t0, 2
-  add $t0, $t0, $t2                             # t0 = C + (DIM * i + j) * 4
+  add $t0, $t0, $t2                             # t0 = C + (MAX * i + j) * 4
   lw $t5, 0($t0)                                # t5 = C[t0]
 
   sw $t5, 0($t4)
@@ -130,7 +131,8 @@ printResult:
 
   la $t0, B
   la $t1, DIM
-  lw $t1, 0($t1)  
+  lw $t1, 0($t1)
+  addi $t3, $zero, 10                           # MAX = 10
 
   move $s0, $zero                               # i = 0
 
@@ -143,8 +145,8 @@ PRINE_FOR_2:
   slt $t2, $s1, $t1                             # t2 = j < DIM
   beq $t2, $zero, PRINE_FOR_2_END
 
-  mult $s0, $t1
-  mflo $t2                                      # t2 = DIM x i
+  mult $s0, $t3
+  mflo $t2                                      # t2 = MAX x i
   add $t2, $t2, $s1                             # t2 = t2 + j
   sll $t2, $t2, 2                               # t2 = t2 x 4
   add $t2, $t2, $t0                             # t2 = t2 + B
